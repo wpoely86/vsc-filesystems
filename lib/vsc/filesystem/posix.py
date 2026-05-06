@@ -43,6 +43,7 @@ OS_LINUX_IGNORE_FILESYSTEMS = (
     'fuse.sshfs',  # X2GO sshfs over fuse
     'fuse.irods',  # irods fuse
     'fuse.irodsfs',  # irods nfs fuse
+    'tmpfs',  # with mountnames this can cause issues
 )
 
 
