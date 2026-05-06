@@ -217,14 +217,10 @@ class PosixOperations(metaclass=Singleton):
                 f"No matching filesystem found for obj {obj} id {fsid} (localfilesystems: {self.localfilesystems})",
                 PosixOperationError)
         elif len(fss) > 1:
-            self.log.raiseException(
-                f"More than one matching filesystem found for obj {obj} with id {fsid} "
-                f"(matched localfilesystems: {fsid})",
-                PosixOperationError)
-        else:
-            self.log.debug("Found filesystem for obj %s: %s", obj, fss[0])
-            return fss[0]
-        return None
+            self.log.debug("Found multiple filesystem (first one will be used) for obj %s: %s", obj, fss)
+
+        self.log.debug("Found filesystem for obj %s: %s", obj, fss[0])
+        return fss[0]
 
     def _local_filesystems(self):
         """What filesystems are mounted / available atm"""
